@@ -51,9 +51,10 @@ class Ilmiah extends MY_Controller
 		$data['query'] = $result;
 		$data['id_menu'] = "ilmiah";
 		$data['class_menu'] = "tahap".$tahap;
+		$data['tahap'] = $tahap;
 		$data['title'] = 'Ilmiah Tahap '. $tahap;
 		//$data['deskripsi'] = 'Tampilkan semua ilmiah dari semua residen berdasarkan tahap';
-		$data['view'] = 'ilmiah/index.php';
+		$data['view'] = 'ilmiah/tahap.php';
 		$this->load->view('layout/layout', $data);
 	}
 

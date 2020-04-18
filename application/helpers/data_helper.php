@@ -21,6 +21,16 @@ function getAllDivisi(){
 	return $query->result_array();
 }
 
+function currentUserTahap(){
+	$CI = &get_instance();
+	$currentUserId = $_SESSION['user_id'];
+	$query = $CI->db->query("SELECT tahap FROM residen_tahap WHERE aktif = 1 AND id_residen = 
+	(SELECT id FROM residen WHERE user_id =".$currentUserId.")
+	");
+	$tahap =  $query->row();
+	return $tahap->tahap;
+}
+
 function indonesian_date ($timestamp = '', $date_format = 'j F Y', $suffix = 'WIB') {
 	if (trim ($timestamp) == '')
 	{

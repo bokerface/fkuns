@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="<?= base_url() ?>/public/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-<?php 
-$current_user_id = $this->session->user_id; 
+<?php
+$current_user_id = $this->session->user_id;
 $last = $this->uri->total_segments();
 $tahap = $this->uri->segment($last);
 ?>
@@ -10,7 +10,6 @@ $tahap = $this->uri->segment($last);
 		<div class="row mb-2">
 			<div class="col-sm-6">
 				<h1><?= $title; ?>
-					<!-- <?php print_r($_SESSION) ?> -->
 					<?php if ($this->session->role == 3) { ?>
 						<?php if (currentUserTahap() == 1) { ?>
 							<a href="<?= base_url('admin/users/add') ?>" class="btn btn-sm btn-default">Tambah baru</a>
@@ -49,12 +48,22 @@ $tahap = $this->uri->segment($last);
 					<?= $this->session->flashdata('msg'); ?>
 				</div>
 			<?php endif; ?>
-
-			<div class="btn-group" role="group" aria-label="Basic example">
-				<a href="<?= base_url('residen/ilmiah/') ?>" class="btn btn-default">Semua Ilmiah</a>
-				<a href="<?= base_url('residen/ilmiah/myIlmiah/' . $current_user_id) ?>" class="btn btn-default">Ilmiah Saya</a>
+			<div class="row">
+				<div class="col-sm-8">
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<a href="<?= base_url('residen/ilmiah/') ?>" class="btn btn-default">Semua Ilmiah</a>
+						<a href="<?= base_url('residen/ilmiah/myIlmiah/' . $current_user_id) ?>" class="btn btn-default">Ilmiah Saya</a>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div>
+						<span >Progress Saya:</span>
+						<div class="progress" style="width: 100%;">
+							<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">75%</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<br>
 			<br>
 
 			<div class="card">
