@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2020 at 01:56 PM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.8
+-- Generation Time: Apr 21, 2020 at 07:43 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `read`
+-- Database: `fkuns`
 --
 
 -- --------------------------------------------------------
@@ -44,10 +44,7 @@ CREATE TABLE `ci_users` (
   `username` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` tinyint(4) NOT NULL DEFAULT '1',
-  `is_active` tinyint(4) NOT NULL DEFAULT '1',
-  `is_verify` tinyint(4) NOT NULL DEFAULT '0',
-  `is_admin` tinyint(4) NOT NULL DEFAULT '0',
+  `role` tinyint(4) NOT NULL DEFAULT 1,
   `token` varchar(255) NOT NULL,
   `password_reset_code` varchar(255) NOT NULL,
   `last_ip` varchar(30) NOT NULL,
@@ -59,15 +56,16 @@ CREATE TABLE `ci_users` (
 -- Dumping data for table `ci_users`
 --
 
-INSERT INTO `ci_users` (`id`, `username`, `email`, `password`, `role`, `is_active`, `is_verify`, `is_admin`, `token`, `password_reset_code`, `last_ip`, `created_at`, `updated_at`) VALUES
-(3, 'admin', 'admin@ppdsinternasolo.id', '$2y$10$DtFLFRrZIikuMDo7mg6lruOUbEKYdCUZXgnvn/lZeRMJyT/9HwFMq', 0, 0, 1, 1, '', '', '', '2017-09-29 10:09:44', '2020-03-25 00:00:00'),
-(78, 'dpa', 'dpa@fk.uns.ac.id', '$2y$10$XH3W7mkdZga7zI4m0qQKse0DPUuyzG6iuM87VebId48csxMnbM6im', 2, 1, 1, 0, '', '', '', '2020-03-25 00:00:00', '2020-03-25 00:00:00'),
-(79, 'indra', 'indrapermana@gmail.com', '$2y$10$XH3W7mkdZga7zI4m0qQKse0DPUuyzG6iuM87VebId48csxMnbM6im', 3, 1, 0, 0, '', '', '', '2020-03-25 00:00:00', '0000-00-00 00:00:00'),
-(80, 'admin_nefro', 'admin_nefro@ppdsinternasolo.id', '$2y$10$XH3W7mkdZga7zI4m0qQKse0DPUuyzG6iuM87VebId48csxMnbM6im', 1, 1, 0, 0, '', '', '', '2020-03-25 00:00:00', '0000-00-00 00:00:00'),
-(81, 'fulanah', 'fulanah@gmail.com', '$2y$10$XH3W7mkdZga7zI4m0qQKse0DPUuyzG6iuM87VebId48csxMnbM6im', 3, 1, 0, 0, '', '', '', '2020-03-25 00:00:00', '0000-00-00 00:00:00'),
-(83, 'maryam', 'maryam@gmail.com', '$2y$10$XH3W7mkdZga7zI4m0qQKse0DPUuyzG6iuM87VebId48csxMnbM6im', 3, 1, 0, 0, '', '', '', '2020-03-25 00:00:00', '0000-00-00 00:00:00'),
-(84, 'Nasywa', 'nasywa@gmail.com', '$2y$10$OsorKm/SwMXMppEi9pRlL.ZKeph2Yjp/RU95K.iv6yc0o7/QWOYsi', 3, 1, 1, 0, '', '', '', '2020-03-28 00:00:00', '2020-03-28 00:00:00'),
-(85, 'ane', 'ane@gmail.com', '$2y$10$gJI6EZLUdwI2cAZh.gDIiOf.o7RvWDtgWULJpDvoQYuSrZxCQ8kpS', 3, 1, 1, 0, '', '', '', '2020-03-28 00:00:00', '2020-03-28 00:00:00');
+INSERT INTO `ci_users` (`id`, `username`, `email`, `password`, `role`, `token`, `password_reset_code`, `last_ip`, `created_at`, `updated_at`) VALUES
+(3, 'admin', 'admin@ppdsinternasolo.id', '$2y$10$DtFLFRrZIikuMDo7mg6lruOUbEKYdCUZXgnvn/lZeRMJyT/9HwFMq', 1, '', '', '', '2017-09-29 10:09:44', '2020-03-25 00:00:00'),
+(78, 'dpa', 'dpa@fk.uns.ac.id', '$2y$10$XH3W7mkdZga7zI4m0qQKse0DPUuyzG6iuM87VebId48csxMnbM6im', 2, '', '', '', '2020-03-25 00:00:00', '2020-03-25 00:00:00'),
+(79, 'indra', 'indrapermana@gmail.com', '$2y$10$DtFLFRrZIikuMDo7mg6lruOUbEKYdCUZXgnvn/lZeRMJyT/9HwFMq', 3, '', '', '', '2020-03-25 00:00:00', '0000-00-00 00:00:00'),
+(80, 'admin_nefro', 'admin_nefro@ppdsinternasolo.id', '$2y$10$XH3W7mkdZga7zI4m0qQKse0DPUuyzG6iuM87VebId48csxMnbM6im', 4, '', '', '', '2020-03-25 00:00:00', '0000-00-00 00:00:00'),
+(81, 'fulanah', 'fulanah@gmail.com', '$2y$10$XH3W7mkdZga7zI4m0qQKse0DPUuyzG6iuM87VebId48csxMnbM6im', 3, '', '', '', '2020-03-25 00:00:00', '0000-00-00 00:00:00'),
+(83, 'maryam', 'maryam@gmail.com', '$2y$10$XH3W7mkdZga7zI4m0qQKse0DPUuyzG6iuM87VebId48csxMnbM6im', 3, '', '', '', '2020-03-25 00:00:00', '0000-00-00 00:00:00'),
+(84, 'Nasywa', 'nasywa@gmail.com', '$2y$10$OsorKm/SwMXMppEi9pRlL.ZKeph2Yjp/RU95K.iv6yc0o7/QWOYsi', 3, '', '', '', '2020-03-28 00:00:00', '2020-03-28 00:00:00'),
+(85, 'ane', 'ane@gmail.com', '$2y$10$gJI6EZLUdwI2cAZh.gDIiOf.o7RvWDtgWULJpDvoQYuSrZxCQ8kpS', 3, '', '', '', '2020-03-28 00:00:00', '2020-03-28 00:00:00'),
+(86, 'admin_divisi', 'admindivisi@gmail.com', '$2y$10$GlKTcwfnamPYRXv2juzYI.vaWjGbQvSjRhWs6HcwDPcBqyPGdgGzC', 4, '', '', '', '2020-04-06 00:00:00', '2020-04-06 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -133,7 +131,7 @@ CREATE TABLE `ilmiah` (
   `judul_ilmiah` varchar(255) NOT NULL,
   `deskripsi` text NOT NULL,
   `file` varchar(100) NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
   `id_residen` int(5) DEFAULT NULL,
   `id_tahap` int(5) DEFAULT NULL,
   `id_kategori` int(3) NOT NULL,
@@ -255,6 +253,7 @@ CREATE TABLE `residen_tahap` (
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `status` int(11) NOT NULL,
+  `aktif` int(11) NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -262,11 +261,11 @@ CREATE TABLE `residen_tahap` (
 -- Dumping data for table `residen_tahap`
 --
 
-INSERT INTO `residen_tahap` (`id`, `id_residen`, `tahap`, `start_date`, `end_date`, `status`, `date`) VALUES
-(1, 1, '1', '2020-01-01 00:00:00', '2020-02-29 00:00:00', 0, '0000-00-00 00:00:00'),
-(2, 1, '2a', '2020-03-01 00:00:00', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
-(3, 2, '1', '2020-01-01 00:00:00', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
-(4, 4, '1', '2020-01-01 18:21:17', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00');
+INSERT INTO `residen_tahap` (`id`, `id_residen`, `tahap`, `start_date`, `end_date`, `status`, `aktif`, `date`) VALUES
+(1, 1, '1', '2020-01-01 00:00:00', '2020-02-29 00:00:00', 0, 0, '0000-00-00 00:00:00'),
+(2, 1, '2a', '2020-03-01 00:00:00', '0000-00-00 00:00:00', 0, 1, '0000-00-00 00:00:00'),
+(3, 2, '1', '2020-01-01 00:00:00', '0000-00-00 00:00:00', 0, 0, '0000-00-00 00:00:00'),
+(4, 4, '1', '2020-01-01 18:21:17', '0000-00-00 00:00:00', 0, 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -289,6 +288,27 @@ CREATE TABLE `residen_tod` (
 INSERT INTO `residen_tod` (`id`, `id_residen`, `id_tod`, `id_divisi`, `end_date`) VALUES
 (1, 1, 1, 1, NULL),
 (2, 2, 1, 2, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tahap`
+--
+
+CREATE TABLE `tahap` (
+  `id` int(11) NOT NULL,
+  `tahap` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tahap`
+--
+
+INSERT INTO `tahap` (`id`, `tahap`) VALUES
+(1, '1'),
+(2, '2a'),
+(3, '2b'),
+(4, '3');
 
 -- --------------------------------------------------------
 
@@ -384,6 +404,12 @@ ALTER TABLE `residen_tod`
   ADD KEY `FK_residen_tod_divisi` (`id_divisi`);
 
 --
+-- Indexes for table `tahap`
+--
+ALTER TABLE `tahap`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tod`
 --
 ALTER TABLE `tod`
@@ -403,7 +429,7 @@ ALTER TABLE `angkatan`
 -- AUTO_INCREMENT for table `ci_users`
 --
 ALTER TABLE `ci_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `divisi`
@@ -452,6 +478,12 @@ ALTER TABLE `residen_tahap`
 --
 ALTER TABLE `residen_tod`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tahap`
+--
+ALTER TABLE `tahap`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tod`
