@@ -51,17 +51,12 @@ $tahap = $this->uri->segment($last);
 			<div class="row">
 				<div class="col-sm-8">
 					<div class="btn-group" role="group" aria-label="Basic example">
-						<a href="<?= base_url('residen/ilmiah/') ?>" class="btn btn-default">Semua Ilmiah</a>
-						<a href="<?= base_url('residen/ilmiah/myIlmiah/' . $current_user_id) ?>" class="btn btn-default">Ilmiah Saya</a>
+						<a href="<?=base_url('residen/ilmiah/tahap/'.$tahap)?>" class="btn btn-warning">Semua Ilmiah</a>
+						<a href="<?= base_url('residen/ilmiah/myIlmiah/' . $current_user_id.'/'.$tahap) ?>" class="btn btn-default">Ilmiah Saya</a>
 					</div>
 				</div>
 				<div class="col-sm-4">
-					<div>
-						<span >Progress Saya:</span>
-						<div class="progress" style="width: 100%;">
-							<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">75%</div>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 			<br>
@@ -74,23 +69,12 @@ $tahap = $this->uri->segment($last);
 						<thead>
 							<tr>
 								<th style="width:80%">Judul Ilmiah</th>
-								<th class="text-center">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php foreach ($query as $ilmiah) {  ?>
 								<tr>
 									<td><?= $ilmiah['judul_ilmiah']; ?></td>
-
-									<td class="text-center">
-										<a class="btn btn-default btn-sm">
-											<i class="fa fa-search" style="color:;"></i>
-										</a>
-										<a class="btn btn-default btn-sm">
-											<i class="fas fa-pencil-alt" style="color:;"></i>
-										</a>
-										<a href="" style="color:#fff;" title="Hapus" class="delete btn btn-sm btn-danger" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-alt"></i></a>
-									</td>
 								</tr>
 							<?php } ?>
 						</tbody>

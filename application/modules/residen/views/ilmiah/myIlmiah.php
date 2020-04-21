@@ -1,24 +1,44 @@
 <link rel="stylesheet" href="<?= base_url() ?>/public/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-
+<?php
+$current_user_id = $this->session->user_id;
+$last = $this->uri->total_segments();
+$tahap = $this->uri->segment($last);
+?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1>Pengguna <a href="<?= base_url('admin/users/add') ?>" class="btn btn-sm btn-default">Tambah baru</a></h1>
+				<h1>
+					<?= $title; ?>
+					<?php if ($this->session->role == 3) { ?>
+						<?php if (currentUserTahap() == 1) { ?>
+							<a href="<?= base_url('admin/users/add') ?>" class="btn btn-sm btn-default">Tambah baru</a>
+						<?php } ?>
+						<?php if (currentUserTahap() == '2a' && $tahap == 2) { ?>
+							<a href="<?= base_url('admin/users/add') ?>" class="btn btn-sm btn-default">Tambah baru</a>
+						<?php } ?>
+						<?php if (currentUserTahap() == '2b' && $tahap == 2) { ?>
+							<a href="<?= base_url('admin/users/add') ?>" class="btn btn-sm btn-default">Tambah baru</a>
+						<?php } ?>
+						<?php if (currentUserTahap() == 3 && $tahap == 3) { ?>
+							<a href="<?= base_url('admin/users/add') ?>" class="btn btn-sm btn-default">Tambah baru</a>
+						<?php } ?>
+					<?php } ?>
+				</h1>
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
 					<li class="breadcrumb-item"><a href="#">Home</a></li>
-					<li class="breadcrumb-item active">Penelitian</li>
+					<li class="breadcrumb-item active"><?= $title; ?></li>
 				</ol>
 			</div>
-		</div> 
+		</div>
 	</div><!-- /.container-fluid -->
 </section>
 
 <!-- Main content -->
-<section class="content"> 
+<section class="content">
 	<div class="row">
 		<div class="col-12">
 			<!-- fash message yang muncul ketika proses penghapusan data berhasil dilakukan -->
@@ -30,14 +50,26 @@
 				</div>
 			<?php endif; ?>
 
-			<div class="btn-group" role="group" aria-label="Basic example">
-				<a href="<?= base_url('admin/users/'); ?>" class="btn <?= ($role == '') ? 'btn-warning' : 'btn-default'; ?>">Semua (<?= $count_all; ?>)</a>
-				<a href="<?= base_url('admin/users/index/4'); ?>" class="btn <?= ($role == 4) ? 'btn-warning' : 'btn-default'; ?>">Admin Divisi (<?= $count_admin; ?>)</a>
-				<a href="<?= base_url('admin/users/index/2'); ?>" class="btn <?= ($role == 2) ? 'btn-warning' : 'btn-default'; ?>">Dosen Pembimbing (<?= $count_dp; ?>)</a>
-				<a href="<?= base_url('admin/users/index/3'); ?>" class="btn <?= ($role == 3) ? 'btn-warning' : 'btn-default'; ?>">Residen (<?= $count_residen; ?>)</a>
+			<div class="row">
+				<div class="col-sm-8">
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<a href="<?= base_url('residen/ilmiah/tahap/' . $tahap) ?>" class="btn btn-default">Semua Ilmiah</a>
+						<a href="<?= base_url('residen/ilmiah/myIlmiah/' . $current_user_id . '/' . $tahap) ?>" class="btn btn-warning">Ilmiah Saya</a>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<?php if ($this->session->role == 3) { ?>
+						<div>
+							<span>Progress Saya:</span>
+							<div class="progress" style="width: 100%;">
+								<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: <?=$progress?>%"><?=$progress?>%</div>
+							</div>
+						</div>
+					<?php } ?>
+				</div>
 			</div>
+
 			<br>
-			<br> 
 
 			<div class="card">
 
@@ -46,30 +78,26 @@
 					<table id="tb_penelitian" class="table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th style="width:40%">Username</th>
-								<th class="text-center">Email</th>
-
+								<th style="width:80%">Judul Ilmiah</th>
 								<th class="text-center">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach ($users->result_array() as $row) {  ?>
+							<?php foreach ($query as $ilmiah) {  ?>
 								<tr>
-									<td><?= $row['username']; ?></td>
-									<td><?= $row['email']; ?></td>
+									<td><?= $ilmiah['judul_ilmiah']; ?></td>
 
 									<td class="text-center">
-										<a class="btn btn-default btn-sm" href="<?= base_url('admin/users/detail/' . $row['id']); ?>">
+										<a class="btn btn-default btn-sm">
 											<i class="fa fa-search" style="color:;"></i>
 										</a>
-										<a class="btn btn-default btn-sm" href="<?= base_url('admin/users/edit/' . $row['id']); ?>">
+										<a class="btn btn-default btn-sm">
 											<i class="fas fa-pencil-alt" style="color:;"></i>
 										</a>
-										<a href="" style="color:#fff;" title="Hapus" class="delete btn btn-sm btn-danger" data-href="<?= base_url('admin/users/del/' . $row['id']); ?>" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-alt"></i></a>
+										<a href="" style="color:#fff;" title="Hapus" class="delete btn btn-sm btn-danger" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-alt"></i></a>
 									</td>
 								</tr>
 							<?php } ?>
-
 						</tbody>
 						</tfoot>
 					</table>
@@ -124,7 +152,6 @@
 		$("#tb_penelitian").DataTable();
 	});
 
-
-	$("#pengguna").addClass('menu-open');
-	$("#pengguna .semua_pengguna a.nav-link").addClass('active');
+	$("#<?= $id_menu; ?>").addClass('menu-open');
+	$("#<?= $id_menu; ?> .<?= $class_menu; ?> a.nav-link").addClass('active');
 </script>

@@ -25,17 +25,31 @@ class Ilmiah extends MY_Controller
 		$this->load->view('layout/layout', $data);
 	}
 
-	public function myIlmiah($id)
+	public function myIlmiah($id,$tahap)
 	{
+		$query2 = $this->db->query("SELECT id FROM tahap WHERE tahap = ".$tahap);
+		$result2 = $query2->row();
+		$id_tahap = $result2->id;
+		
 		$query = $this->db->query("SELECT * FROM ilmiah WHERE id_residen = 
-		(SELECT id FROM residen WHERE user_id =".$id.")");
+		(SELECT id FROM residen WHERE user_id =".$id.") AND id_tahap = ".$id_tahap);
 		$result = $query->result_array();
+		$jumlahdoc = $query->num_rows();
 
+		$query3 = $this->db->query("SELECT kategori FROM kategori_ilmiah WHERE tahap = ".$tahap);
+		$jumlahkategory = $query3->num_rows();
+
+		$progress = $jumlahdoc/$jumlahkategory*100;
+		$formattedprogress = number_format($progress,2);
+
+		// echo "progress = ".$progress;
+
+		$data['progress'] = $formattedprogress;
 		$data['query'] = $result;
 		$data['id_menu'] = 'ilmiah';
-		$data['class_menu'] = 'index';
-		$data['title'] = 'Ilmiah';
-		$data['view'] = 'ilmiah/index.php';
+		$data['class_menu'] = 'tahap'.$tahap;
+		$data['title'] = 'Ilmiah Tahap '.$tahap;
+		$data['view'] = 'ilmiah/myIlmiah.php';
 		$this->load->view('layout/layout', $data);
 	}
 	

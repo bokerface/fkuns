@@ -64,25 +64,6 @@
 
 			</li>
 
-			<li class="nav-item has-treeview" id="ilmiah">
-				<a href="#" class="nav-link">
-					<i class="nav-icon fas fa-book"></i>
-					<p>
-						Tahap 2
-						<i class="fas fa-angle-left right"></i>
-					</p>
-				</a>
-				<ul class="nav nav-treeview">
-					<li class="nav-item index">
-						<a href="<?=base_url('residen/ilmiah/'); ?>" class="nav-link">
-							<i class="far fa-circle nav-icon"></i>
-							<p>Divisi</p>
-						</a>
-					</li>
-				</ul>
-
-			</li>
-
 			<li class="nav-item has-treeview" id="residen">
 				<a href="#" class="nav-link">
 					<i class="nav-icon fas fa-users"></i>

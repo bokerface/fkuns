@@ -9,8 +9,8 @@ $tahap = $this->uri->segment($last);
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1><?= $title; ?>
-					<!-- <?php print_r($_SESSION) ?> -->
+				<h1>
+					<?= $title; ?>
 					<?php if ($this->session->role == 3) { ?>
 						<?php if (currentUserTahap() == 1) { ?>
 							<a href="<?= base_url('admin/users/add') ?>" class="btn btn-sm btn-default">Tambah baru</a>
@@ -18,10 +18,10 @@ $tahap = $this->uri->segment($last);
 						<?php if (currentUserTahap() == '2a' && $tahap == 2) { ?>
 							<a href="<?= base_url('admin/users/add') ?>" class="btn btn-sm btn-default">Tambah baru</a>
 						<?php } ?>
-						<?php if (currentUserTahap() == '2b') { ?>
+						<?php if (currentUserTahap() == '2b' && $tahap == 2) { ?>
 							<a href="<?= base_url('admin/users/add') ?>" class="btn btn-sm btn-default">Tambah baru</a>
 						<?php } ?>
-						<?php if (currentUserTahap() == 3) { ?>
+						<?php if (currentUserTahap() == 3 && $tahap == 3) { ?>
 							<a href="<?= base_url('admin/users/add') ?>" class="btn btn-sm btn-default">Tambah baru</a>
 						<?php } ?>
 					<?php } ?>
@@ -50,10 +50,10 @@ $tahap = $this->uri->segment($last);
 				</div>
 			<?php endif; ?>
 
-			<div class="btn-group" role="group" aria-label="Basic example">
+			<!-- <div class="btn-group" role="group" aria-label="Basic example">
 				<a href="<?= base_url('residen/ilmiah/') ?>" class="btn btn-default">Semua Ilmiah</a>
-				<a href="<?= base_url('residen/ilmiah/myIlmiah/' . $current_user_id) ?>" class="btn btn-default">Ilmiah Saya</a>
-			</div>
+				<a href="<?= base_url('residen/ilmiah/myIlmiah/'.$current_user_id); ?>" class="btn btn-default">Ilmiah Saya</a>
+			</div> -->
 			<br>
 			<br>
 
@@ -65,23 +65,12 @@ $tahap = $this->uri->segment($last);
 						<thead>
 							<tr>
 								<th style="width:80%">Judul Ilmiah</th>
-								<th class="text-center">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php foreach ($query as $ilmiah) {  ?>
 								<tr>
 									<td><?= $ilmiah['judul_ilmiah']; ?></td>
-
-									<td class="text-center">
-										<a class="btn btn-default btn-sm">
-											<i class="fa fa-search" style="color:;"></i>
-										</a>
-										<a class="btn btn-default btn-sm">
-											<i class="fas fa-pencil-alt" style="color:;"></i>
-										</a>
-										<a href="" style="color:#fff;" title="Hapus" class="delete btn btn-sm btn-danger" data-toggle="modal" data-target="#confirm-delete"> <i class="fa fa-trash-alt"></i></a>
-									</td>
 								</tr>
 							<?php } ?>
 						</tbody>
