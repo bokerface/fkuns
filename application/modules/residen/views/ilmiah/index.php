@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="<?= base_url() ?>/public/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-<?php 
-$current_user_id = $this->session->user_id; 
+<?php
+$current_user_id = $this->session->user_id;
 $last = $this->uri->total_segments();
 $tahap = $this->uri->segment($last);
 ?>
@@ -52,7 +52,7 @@ $tahap = $this->uri->segment($last);
 
 			<!-- <div class="btn-group" role="group" aria-label="Basic example">
 				<a href="<?= base_url('residen/ilmiah/') ?>" class="btn btn-default">Semua Ilmiah</a>
-				<a href="<?= base_url('residen/ilmiah/myIlmiah/'.$current_user_id); ?>" class="btn btn-default">Ilmiah Saya</a>
+				<a href="<?= base_url('residen/ilmiah/myIlmiah/' . $current_user_id); ?>" class="btn btn-default">Ilmiah Saya</a>
 			</div> -->
 			<br>
 			<br>
@@ -65,12 +65,17 @@ $tahap = $this->uri->segment($last);
 						<thead>
 							<tr>
 								<th style="width:80%">Judul Ilmiah</th>
+								<th style="width:80%">Detail</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php foreach ($query as $ilmiah) {  ?>
 								<tr>
 									<td><?= $ilmiah['judul_ilmiah']; ?></td>
+									<td><a href="<?= base_url('residen/ilmiah/detail/' . $ilmiah['id']) ?>" class="btn btn-default btn-sm">
+											<i class="fa fa-search" style="color:;"></i>
+										</a>
+									</td>
 								</tr>
 							<?php } ?>
 						</tbody>

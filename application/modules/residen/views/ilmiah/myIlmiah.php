@@ -88,7 +88,7 @@ $tahap = $this->uri->segment($last);
 									<td><?= $ilmiah['judul_ilmiah']; ?></td>
 
 									<td class="text-center">
-										<a class="btn btn-default btn-sm">
+										<a href="<?= base_url('residen/ilmiah/detail/'.$ilmiah['id']) ?>" class="btn btn-default btn-sm">
 											<i class="fa fa-search" style="color:;"></i>
 										</a>
 										<a class="btn btn-default btn-sm">

@@ -9,7 +9,7 @@ class Ilmiah extends MY_Controller
  
 	public function index()
 	{		
-		$query = $this->db->query("SELECT i.judul_ilmiah, i.date, k.kategori, rt.tahap, r.nama_lengkap FROM ilmiah i
+		$query = $this->db->query("SELECT i.id, i.judul_ilmiah, i.date, k.kategori, rt.tahap, r.nama_lengkap FROM ilmiah i
 		LEFT JOIN kategori_ilmiah k ON k.id=i.id_kategori		
 		LEFT JOIN residen r ON r.id=i.id_residen		
 		LEFT JOIN residen_tahap rt ON rt.id=i.id_tahap		
@@ -88,6 +88,21 @@ class Ilmiah extends MY_Controller
 		$data['title'] = 'Ilmiah Semua Divisi ';
 		$data['deskripsi'] = 'Tampilkan semua ilmiah dari semua residen berdasarkan Divisi. Yg tampil hanya tahap 2a dan 2b saja';
 		$data['view'] = 'ilmiah/index.php';
+		$this->load->view('layout/layout', $data);
+	}
+
+	public function detail($id_ilmiah)
+	{
+		$query1 = $this->db->query("SELECT nama_lengkap FROM residen WHERE id = (SELECT id_residen FROM ilmiah WHERE id =".$id_ilmiah.")");
+		$result1 = $query1->row();
+		$author = $result1->nama_lengkap;
+
+		$query2 = $this->db->query("SELECT * FROM ilmiah WHERE id = ".$id_ilmiah);
+		$result2 = $query2->result_array();
+
+		$data['query'] = $result2;
+		$data['author'] = $author;
+		$data['view'] = 'ilmiah/detail.php';
 		$this->load->view('layout/layout', $data);
 	}
 	
