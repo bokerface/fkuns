@@ -31,6 +31,14 @@ function currentUserTahap(){
 	return $tahap->tahap;
 }
 
+function getCurrentUser(){
+	$CI = &get_instance();
+	$currentUserId = $_SESSION['user_id'];
+	$query = $CI->db->get_where('residen',array('user_id'=>$currentUserId));
+	$currentUser = $query->row();
+	return $currentUser->nama_lengkap;
+}
+
 function indonesian_date ($timestamp = '', $date_format = 'j F Y', $suffix = 'WIB') {
 	if (trim ($timestamp) == '')
 	{

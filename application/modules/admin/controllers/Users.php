@@ -30,46 +30,23 @@ class Users extends Admin_Controller
 
 	public function add()
 	{
-		if ($this->input->post('submit')) {
+		if ($this->input->post('submit')) { 
 			$this->form_validation->set_rules('username', 'Username', 'trim|required');
-		//	$this->form_validation->set_rules('firstname', 'Firstname', 'trim|required');
 			$this->form_validation->set_rules('email', 'Email', 'trim|valid_email|required');
-		//	$this->form_validation->set_rules('mobile_no', 'Number', 'trim|required');
-			//$this->form_validation->set_rules('role', 'Role', 'trim|required');
 			$this->form_validation->set_rules('password', 'Password', 'trim|required');
 
 			if ($this->form_validation->run() == FALSE) {
 				$data['view'] = 'admin/users/user_add';
 				$this->load->view('layout/layout', $data);
 			} else {
-				/*
-				$upload_path = './uploads/fotoProfil';
-
-				if (!is_dir($upload_path)) {
-					mkdir($upload_path, 0777, TRUE);
-				}
 				
-				$config = array(
-					'upload_path' => $upload_path,
-					'allowed_types' => "jpg|png|jpeg",
-					'overwrite' => FALSE,
-				);
-
-				$this->load->library('upload', $config);
-				$this->upload->do_upload('foto_profil');
-				$foto_profil = $this->upload->data();
-				*/
 				$data = array(
 					'username' => $this->input->post('username'),
-				//	'firstname' => $this->input->post('firstname'),
 					'email' => $this->input->post('email'),
-				//	'mobile_no' => $this->input->post('mobile_no'),
-				//	'id_prodi' => $this->input->post('id_prodi'),
 					'role' => $this->input->post('role'),
 					'password' =>  password_hash($this->input->post('password'), PASSWORD_BCRYPT),
 					'created_at' => date('Y-m-d : h:m:s'),
 					'updated_at' => date('Y-m-d : h:m:s'),			
-				//	'photo' => $upload_path . '/' . $foto_profil['file_name'],
 				);
 
 				$data = $this->security->xss_clean($data);
@@ -80,7 +57,6 @@ class Users extends Admin_Controller
 				}
 			}
 		} else {
-			// $data['prodi'] = $this->prodi_model->get_all_prodi();
 			$data['view'] = 'admin/users/user_add';
 			$this->load->view('layout/layout', $data);
 		}

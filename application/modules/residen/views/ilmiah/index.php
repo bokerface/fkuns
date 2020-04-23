@@ -65,7 +65,7 @@ $tahap = $this->uri->segment($last);
 						<thead>
 							<tr>
 								<th style="width:80%">Judul Ilmiah</th>
-								<th style="width:80%">Detail</th>
+								<th style="width:20%">Detail</th>
 							</tr>
 						</thead>
 						<tbody>

@@ -45,20 +45,10 @@
 						<div class="text-center">
 						</div>
 						<h3 class="profile-username text-center"><?= $author ?></h3>
-						<p class="text-muted text-center">Kategori</p>
 
 						<ul class="list-group list-group-unbordered mb-3">
 							<li class="list-group-item">
 								<b>Diunggah</b> <a class="float-right"><?= $ilmiah['date'] ?></a>
-							</li>
-							<li class="list-group-item">
-								<b>Status</b> <a class="float-right">
-									<?php if ($ilmiah['status'] == 0) {
-										echo "Belum Diterima";
-									} else {
-										echo "Diterima";
-									} ?>
-								</a>
 							</li>
 						</ul>
 					</div>
@@ -66,22 +56,7 @@
 				</div>
 				<!-- /.card -->
 
-				<div class="card card-olive card-outline">
-					<div class="card-header pl-3 pt-2 pb-2">
-						Penilaian Reviewer
-					</div>
-					<div class="card-body" style="padding-top:0;">
-						<strong>Penilaian</strong>
-						<br>
-						<?= $ilmiah['nilai'] ?>
-						<hr />
-						<strong>Upload Revisi Penelitian </strong><br />
-						<input name="file_revisi" type="file">
-						<hr />
-						<div class="text-right"><button type="submit" class="btn btn-success">Update</button></div>
-						</form>
-					</div>
-				</div>
+				
 			</div>
 			<!-- /.col -->
 			<div class="col-md-9">

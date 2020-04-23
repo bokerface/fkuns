@@ -11,17 +11,17 @@ $tahap = $this->uri->segment($last);
 			<div class="col-sm-6">
 				<h1><?= $title; ?>
 					<?php if ($this->session->role == 3) { ?>
-						<?php if (currentUserTahap() == 1) { ?>
-							<a href="<?= base_url('admin/users/add') ?>" class="btn btn-sm btn-default">Tambah baru</a>
+						<?php if (currentUserTahap() == 1 && $tahap == 1) { ?>
+							<a href="<?= base_url('residen/ilmiah/add/1') ?>" class="btn btn-sm btn-default">Tambah baru</a>
 						<?php } ?>
 						<?php if (currentUserTahap() == '2a' && $tahap == 2) { ?>
-							<a href="<?= base_url('admin/users/add') ?>" class="btn btn-sm btn-default">Tambah baru</a>
+							<a href="<?= base_url('residen/ilmiah/add/2a') ?>" class="btn btn-sm btn-default">Tambah baru</a>
 						<?php } ?>
 						<?php if (currentUserTahap() == '2b') { ?>
-							<a href="<?= base_url('admin/users/add') ?>" class="btn btn-sm btn-default">Tambah baru</a>
+							<a href="<?= base_url('residen/ilmiah/add/2b') ?>" class="btn btn-sm btn-default">Tambah baru</a>
 						<?php } ?>
-						<?php if (currentUserTahap() == 3) { ?>
-							<a href="<?= base_url('admin/users/add') ?>" class="btn btn-sm btn-default">Tambah baru</a>
+						<?php if (currentUserTahap() == 3 && $tahap == 3) { ?>
+							<a href="<?= base_url('residen/ilmiah/add/3') ?>" class="btn btn-sm btn-default">Tambah baru</a>
 						<?php } ?>
 					<?php } ?>
 				</h1>
@@ -51,12 +51,12 @@ $tahap = $this->uri->segment($last);
 			<div class="row">
 				<div class="col-sm-8">
 					<div class="btn-group" role="group" aria-label="Basic example">
-						<a href="<?=base_url('residen/ilmiah/tahap/'.$tahap)?>" class="btn btn-warning">Semua Ilmiah</a>
-						<a href="<?= base_url('residen/ilmiah/myIlmiah/' . $current_user_id.'/'.$tahap) ?>" class="btn btn-default">Ilmiah Saya</a>
+						<a href="<?= base_url('residen/ilmiah/tahap/' . $tahap) ?>" class="btn btn-warning">Semua Ilmiah</a>
+						<a href="<?= base_url('residen/ilmiah/myIlmiah/' . $current_user_id . '/' . $tahap) ?>" class="btn btn-default">Ilmiah Saya</a>
 					</div>
 				</div>
 				<div class="col-sm-4">
-					
+
 				</div>
 			</div>
 			<br>
@@ -69,12 +69,17 @@ $tahap = $this->uri->segment($last);
 						<thead>
 							<tr>
 								<th style="width:80%">Judul Ilmiah</th>
+								<th style="width:20%">Detail</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php foreach ($query as $ilmiah) {  ?>
 								<tr>
 									<td><?= $ilmiah['judul_ilmiah']; ?></td>
+									<td><a href="<?= base_url('residen/ilmiah/detail/' . $ilmiah['id']) ?>" class="btn btn-default btn-sm">
+											<i class="fa fa-search" style="color:;"></i>
+										</a>
+									</td>
 								</tr>
 							<?php } ?>
 						</tbody>
