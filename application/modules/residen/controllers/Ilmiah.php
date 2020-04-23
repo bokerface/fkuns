@@ -141,6 +141,22 @@ class Ilmiah extends MY_Controller
 				$data['view'] = 'ilmiah/tambah.php';
 				$this->load->view('layout/layout', $data);
 			} else {
+				$upload_path = './uploads/dokumen';
+
+				if (!is_dir($upload_path)) {
+					mkdir($upload_path, 0777, TRUE);
+				}
+
+				$config = array(
+					'upload_path' => $upload_path,
+					'allowed_types' => "pdf",
+					'overwrite' => FALSE,
+				);
+
+				$this->load->library('upload', $config);
+				$this->upload->do_upload('file');
+				$file = $this->upload->data();
+
 				$data = array(
 					'judul_ilmiah' => $this->input->post('judul_ilmiah'),
 					'deskripsi' => $this->input->post('deskripsi'),
@@ -148,13 +164,14 @@ class Ilmiah extends MY_Controller
 					'id_residen' => $idResiden,
 					'id_tahap' => $idTahap,
 					'id_kategori' => $this->input->post('kategori'),
+					'file' => $upload_path . '/' . $file['file_name'],
 				);
 
 				$data = $this->security->xss_clean($data);
 				$result = $this->ilmiah_model->add_ilmiah($data);
 				if ($result) {
 					$this->session->set_flashdata('msg', 'Pengguna berhasil ditambahkan!');
-					redirect(base_url('ilmiah/index'));
+					redirect(base_url('residen/ilmiah/index'));
 				}
 			}
 		} else {
